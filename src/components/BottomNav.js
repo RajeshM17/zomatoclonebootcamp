@@ -5,31 +5,30 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
-import {useHistory,useLocation} from 'react-router-dom';
+import SearchIcon from '@material-ui/icons/Search';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import { useHistory, useLocation } from 'react-router-dom';
 const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
+  root: {},
 });
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-  const location=useLocation()
+  const location = useLocation();
   const [value, setValue] = React.useState(location.pathname);
-  const history=useHistory();
- ;
-
+  const history = useHistory();
   return (
     <BottomNavigation
-    style={{
-        position:"fixed",
-        bottom:"0px",
-
-    }}
+      style={{
+        position: 'fixed',
+        bottom: '0px',
+        left: '0px',
+        right: '0px',
+      }}
       value={value}
       onChange={(event, newValue) => {
         setValue(newValue);
-        history.push(value);
+        history.push(newValue);
       }}
       showLabels
       className={classes.root}
@@ -40,9 +39,20 @@ export default function SimpleBottomNavigation() {
         icon={<RestoreIcon />}
       />
       <BottomNavigationAction
+        label="Out"
+        value="/Out"
+        icon={<DirectionsRunIcon />}
+      />
+
+      <BottomNavigationAction
         label="Gold"
         value="/Gold"
         icon={<FavoriteIcon />}
+      />
+      <BottomNavigationAction
+        label="Search"
+        value="/Search"
+        icon={<SearchIcon />}
       />
       <BottomNavigationAction
         label="Profile"
